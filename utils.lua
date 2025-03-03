@@ -1,6 +1,6 @@
 M = {}
 
-function M.readFileStripWhitespace(filename)
+function M.readFileToString(filename)
   local file, err = io.open(filename, "r")
   if not file then
     return nil, "Could not open file: " .. (err or "unknown error")
@@ -15,30 +15,21 @@ function M.readFileStripWhitespace(filename)
   return content
 end
 
---[[
-TestLogger = {}
+function M.readFileToList(filename)
+  local list = {}
+  local file, err = io.open(filename, "r")
+  if not file then
+    return nil, "Could not open file: " .. (err or "unknown error")
+  end
 
-function TestLogger:setUp()
-  -- define the fname to use for logging
-  self.fname = 'mytmplog.log'
-  -- make sure the file does not already exists
-  os.remove(self.fname)
+  while true do
+    local line = file:read("l")
+    if line == nil then break end
+    line = line:gsub("%s+", "")
+    table.insert(list, line)
+  end
+
+  return list
 end
-
-function TestLogger:testLoggerCreatesFile()
-  luaunit.LuaUnit.(self.fname)
-  log('toto')
-  f = io.open(self.fname, 'r')
-  luaunit.assertNotNil(f)
-  f:close()
-end
-
-function TestLogger:tearDown()
-  self.fname = 'mytmplog.log'
-  -- cleanup our log file after all tests
-  os.remove(self.fname)
-end
-]]--
-
 
 return M
