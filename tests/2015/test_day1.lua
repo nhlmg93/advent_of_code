@@ -9,3 +9,5 @@ function TestDay1:print()
   local floors = day1:partOne(input)
   luaunit.assertEquals(floors, 138)
 end
+
+return TestDay1

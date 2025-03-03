@@ -1,5 +1,3 @@
-luaunit = require('luaunit')
-
 M = {}
 
 function M:readFileStripWhitespace(filename)
