@@ -5,7 +5,7 @@ local day2 = require("modules.2015.day2")
 TestDay2 = {}
 
 function TestDay2:setUp()
-  self.input = utils.readFileToList("assets/day2.txt")
+  self.input = utils.readFileToList("assets/2015/day2.txt")
 end
 
 function TestDay2:testPartOne()
