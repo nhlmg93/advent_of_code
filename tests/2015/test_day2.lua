@@ -10,7 +10,12 @@ end
 
 function TestDay2:testPartOne()
   local sqft = day2.partOne(self.input)
-  print(sqft)
+  luaunit.assertEquals(sqft, 1598415)
+end
+
+function TestDay2:testPartTwo()
+  local feet = day2.partTwo(self.input)
+  luaunit.assertEquals(feet, 3812909)
 end
 
 return TestDay2

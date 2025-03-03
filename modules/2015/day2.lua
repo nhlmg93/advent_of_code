@@ -23,15 +23,84 @@ All numbers in the elves' list are in feet. How many total square feet of wrappi
 --- @class Module
 M = {}
 
+--- parses a string of dimensions LxWxH Ex... 10x10x15
+--- @param dimensionStr string The dimensions of presents
+--- @return integer, integer, integer
+local function parse(dimensionStr)
+  dimensionStr = dimensionStr:gsub("\n", "")
+  local lwh = {}
+  local p1 = 1
+  local p2 = 1
+  while p2 <= #dimensionStr do
+    local char = dimensionStr:sub(p2, p2)
+    if char ~= "x" then
+      p2 = p2 + 1
+    else
+      local numStr = dimensionStr:sub(p1, p2 - 1)
+      local num = tonumber(numStr)
+      table.insert(lwh, num)
+      p2 = p2 + 1
+      p1 = p2
+    end
+  end
+  local num = tonumber(dimensionStr:sub(p1, #dimensionStr))
+  table.insert(lwh, num)
+  return lwh[1], lwh[2], lwh[3]
+end
+
+--- calculate surface area of a box
+--- @param l integer length
+--- @param w integer width
+--- @param h integer height
+--- @return integer, integer, integer
+local function surfaceArea(l, w, h)
+  return (2 * l * w) + (2 * w * h) + (2 * h * l)
+end
+--- calculate smallest perimeter of any one face
+--- @param l integer length
+--- @param w integer width
+--- @param h integer height
+--- @return integer, integer
+local function shortestDistance(l, w, h)
+  local sorted = { l, w, h }
+  table.sort(sorted, function(a, b)
+    return a < b
+  end)
+  return sorted[1], sorted[2]
+end
+
+--- calculate cubic feet
+--- @param l integer length
+--- @param w integer width
+--- @param h integer height
+--- @return integer, integer
+local function cubicFeet(l, w, h)
+  return l * w * h
+end
+
 --- Calculates the total square feet of wrapping paper
 --- @param dimensions table The dimensions of presents
 --- @return integer sqft
 function M.partOne(dimensions)
-  error("Not Implemented")
+  local totalSqft = 0
+  for _, value in ipairs(dimensions) do
+    local l, w, h = parse(value)
+    local boxSqrft = surfaceArea(l, w, h) + math.min(l * w, w * h, h * l)
+    totalSqft = totalSqft + boxSqrft
+  end
+  return totalSqft
 end
 
 function M.partTwo(dimensions)
-  error("Not Implemented")
+  local feet = 0
+  for _, value in ipairs(dimensions) do
+    local l, w, h = parse(value)
+    local d1, d2 = shortestDistance(l, w, h)
+    local shortest = 2 * d1 + 2 * d2
+    local volume = cubicFeet(l, w, h)
+    feet = feet + shortest + volume
+  end
+  return feet
 end
 
 return M
