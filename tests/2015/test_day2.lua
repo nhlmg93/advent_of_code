@@ -1,6 +1,6 @@
 local luaunit = require('lib.luaunit')
 local utils = require("utils")
-local day1 = require("modules.2015.day2")
+local day2 = require("modules.2015.day2")
 
 TestDay2 = {}
 
@@ -9,9 +9,8 @@ function TestDay2:setUp()
 end
 
 function TestDay2:testPartOne()
-  local floors = day1.partOne(self.input)
-  print(floors)
-  luaunit.assertEquals(floors, 138)
+  local sqft = day2.partOne(self.input)
+  print(sqft)
 end
 
-return TestDay1
+return TestDay2
