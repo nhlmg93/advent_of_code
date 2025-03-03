@@ -1,6 +1,6 @@
 M = {}
 
-function M:readFileStripWhitespace(filename)
+function M.readFileStripWhitespace(filename)
   local file, err = io.open(filename, "r")
   if not file then
     return nil, "Could not open file: " .. (err or "unknown error")
