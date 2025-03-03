@@ -1,7 +1,9 @@
 
-.PHONY: run
+.PHONY: run setup
 
 all: run
+
+setup:
 
 
 run:
