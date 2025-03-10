@@ -12,8 +12,8 @@ end
 --- That is why i am passing 282740 as a param to start the
 --- count close to the solution.
 function TestDay5:testPartOne()
-  local num = day5.partOne(self.input, 282740)
-  print(num)
+  local num = day5.partOne(self.input)
+  luaunit.assertEquals(num, 236)
 end
 
 --- had to run this in golang to get the output quick enough.

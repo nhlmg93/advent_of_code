@@ -31,7 +31,7 @@ function M.partOne(input)
   -- Flags
   local totalNiceStrings = 0
   local vowlCount = 0
-  local vowls = {"a", "e", "i", "o", "u"}
+  local vowls = { "a", "e", "i", "o", "u" }
   local repeatedLetters = false
   local containsNaughtyStrings = false
   local naughtyStrings = {
@@ -41,15 +41,15 @@ function M.partOne(input)
     ["xy"] = true,
   }
   local function resetFlags()
-   vowlCount = 0
-   containsNaughtyStrings = false
-   repeatedLetters = false
+    vowlCount = 0
+    containsNaughtyStrings = false
+    repeatedLetters = false
   end
 
   for _, s in pairs(input) do
     for i = 1, #s do
-      local char = s:sub(i,i)
-      local charNext = s:sub(i+1, i+1)
+      local char = s:sub(i, i)
+      local charNext = s:sub(i + 1, i + 1)
 
       if char == charNext then
         repeatedLetters = true
@@ -61,9 +61,8 @@ function M.partOne(input)
       end
 
       for j = 1, #vowls do
-       if char == vowls[j] then vowlCount = vowlCount + 1 end
+        if char == vowls[j] then vowlCount = vowlCount + 1 end
       end
-
     end
 
     if vowlCount >= 3 and repeatedLetters and not containsNaughtyStrings then totalNiceStrings = totalNiceStrings + 1 end
