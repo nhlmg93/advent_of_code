@@ -10,4 +10,3 @@
     ```
       make setup YEAR=the-year DAY=the-day
     ```
-

@@ -1,27 +1,27 @@
 local luaunit = require('lib.luaunit')
 local utils = require("utils")
-local day4 = require("modules.2015.day4")
+local day5 = require("modules.2015.day5")
 
-TestDay4 = {}
+TestDay5 = {}
 
-function TestDay4:setUp()
-  self.input = utils.readFileToString("assets/2015/day4.txt")
+function TestDay5:setUp()
+  self.input = utils.readFileToList("assets/2015/day5.txt")
 end
 
 --- had to run this in golang to get the output quick enough.
 --- That is why i am passing 282740 as a param to start the
 --- count close to the solution.
-function TestDay4:testPartOne()
-  local num = day4.partOne(self.input, 282740)
-  luaunit.assertEquals(num, 282749)
+function TestDay5:testPartOne()
+  local num = day5.partOne(self.input, 282740)
+  print(num)
 end
 
 --- had to run this in golang to get the output quick enough.
 --- That is why i am passing 9962600 as a param to start the
 --- count close to the solution.
-function TestDay4:testPartTwo()
-  local num = day4.partTwo(self.input, 9962620)
-  luaunit.assertEquals(num, 9962624)
+function TestDay5:testPartTwo()
+  local num = day5.partTwo(self.input, 9962620)
+  print(num)
 end
 
-return TestDay4
+return TestDay5
